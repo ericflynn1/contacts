@@ -5,7 +5,7 @@
 
 body {
     background-color: lightgray;
-    @include grid-column(12);
+    @include grid-row();
 
     .mainBox {
         border: 1px solid black;
@@ -16,6 +16,7 @@ body {
 
     #scrollBox {
         height: 300px;
+        overflow: scroll;
     }
 
     #groupHangout {

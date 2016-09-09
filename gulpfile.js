@@ -1,6 +1,5 @@
 let gulp = require('gulp');
 let browserify = require('gulp-browserify');
-let watch = require('gulp-watch');
 
 gulp.task('default', ['html', 'css', 'js']);
 

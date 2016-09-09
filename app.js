@@ -1,7 +1,6 @@
 let _ = require('lodash');
 
 function peopleAppender(object) {
-    // console.log(object.firstName + " " + object.lastName);
     let peopleSection = document.createElement("section");
     peopleSection.classList.add("peopleSection");
     peopleSection.innerHTML = '<p>' + object.firstName + ' ' + object.lastName + '</p>';
@@ -9,7 +8,13 @@ function peopleAppender(object) {
     $('.peopleSection').draggable({ revert: true});
 }
 
-
+function groupAppender(object, i) {
+    let groupSection = document.createElement("section");
+    groupSection.classList.add("groups");
+    groupSection.setAttribute("id", "list" + i);
+    groupSection.innerHTML = '<h2>' + object.name + '</h2> <ol></ol>';
+    $('#groupHangout').append(groupSection);
+}
 
 window.addEventListener('load', function() {
     let peopleRequest = new XMLHttpRequest();
@@ -25,7 +30,7 @@ window.addEventListener('load', function() {
     groupRequest.addEventListener('load', function() {
         let response = JSON.parse(groupRequest.responseText);
         console.log(response[0].name);
-        // response.forEach()
+        response.forEach(groupAppender);
     });
     groupRequest.send();
 });

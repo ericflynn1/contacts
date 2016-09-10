@@ -20,11 +20,10 @@ function groupAppender(object, i) {
     $('#groupHangout').append(groupSection);
     $( '.groups' ).droppable({
         drop: function(event, ui) {
-            console.log("Is it working?");
             let content = ui.draggable.text();
             console.log(content);
-            let zeeName = content.split(' ')[0];
-            console.log(zeeName);
+            let zeeNumber = content.split(' ')[0];
+            console.log(zeeNumber);
         }
     });
 }
@@ -42,14 +41,10 @@ window.addEventListener('load', function() {
     groupRequest.open('GET', 'https://boiling-plateau-18106.herokuapp.com/group');
     groupRequest.addEventListener('load', function() {
         let response = JSON.parse(groupRequest.responseText);
-        console.log(response[0].name);
+        // console.log(response[0].name);
         response.forEach(groupAppender);
     });
     groupRequest.send();
 
-    $("#list0").droppable({
-        drop: function(event, ui) {
-            console.log("It's working");
-        }
-    });
+
 });

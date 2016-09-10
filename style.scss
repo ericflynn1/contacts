@@ -23,9 +23,13 @@ body {
 
     #searchBtn {
         background-color: deepskyblue;
-        padding: 15px;
+        padding: 10px;
         border: 2px solid black;
         margin: 5px;
+        border-radius: 10px;
+    }
+    #searchBtn:hover {
+        background-color: lightgrey;
     }
 
     #scrollBox {

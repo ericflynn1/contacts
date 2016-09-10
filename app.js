@@ -17,11 +17,11 @@ function groupAppender(object, i) {
     groupSection.classList.add("groups");
     groupSection.setAttribute("id", "list" + i);
     groupSection.innerHTML = '<h2>' + object.name + '</h2> <ol></ol>';
-    // groupSection.droppable({
-    //     drop: function(event, ui) {
-    //         console.log("Ees et verking?");
-    //     }
-    // });
+    groupSection.droppable({
+        drop: function(event, ui) {
+            console.log("Is it working?");
+        }
+    });
     $('#groupHangout').append(groupSection);
 }
 

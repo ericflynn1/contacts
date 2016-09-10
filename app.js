@@ -3,7 +3,7 @@ let _ = require('lodash');
 function peopleAppender(object) {
     let peopleSection = document.createElement("section");
     peopleSection.classList.add("peopleSection");
-    peopleSection.innerHTML = '<p>' + object.firstName + ' ' + object.lastName + '</p>';
+    peopleSection.innerHTML = '<p>' + object.id + " : " + object.firstName + ' ' + object.lastName + '</p>';
     $('#scrollBox').append(peopleSection);
     $('.peopleSection').draggable({
         revert: true,
@@ -21,6 +21,10 @@ function groupAppender(object, i) {
     $( '.groups' ).droppable({
         drop: function(event, ui) {
             console.log("Is it working?");
+            let content = ui.draggable.text();
+            console.log(content);
+            let zeeName = content.split(' ')[0];
+            console.log(zeeName);
         }
     });
 }

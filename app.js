@@ -5,7 +5,11 @@ function peopleAppender(object) {
     peopleSection.classList.add("peopleSection");
     peopleSection.innerHTML = '<p>' + object.firstName + ' ' + object.lastName + '</p>';
     $('#scrollBox').append(peopleSection);
-    $('.peopleSection').draggable({ revert: true});
+    $('.peopleSection').draggable({
+        revert: true,
+        containment: $('#scrollbox'),
+        helper: 'clone'
+    });
 }
 
 function groupAppender(object, i) {

@@ -14,11 +14,17 @@ body {
         font-family: 'Baloo Chettan';
         
     }
+
     #header {
         font-size: 24px;
     }
+
+    .peopleSection {
+        border: 1px solid lightgray;
+        padding-left: 20px;
+    }
     #searchBar {
-        
+        background-color: lightgray;
     }
 
     #searchBtn {
@@ -29,7 +35,8 @@ body {
         border-radius: 10px;
     }
     #searchBtn:hover {
-        background-color: lightgrey;
+        background-color: black;
+        color: deepskyblue;
     }
 
     #scrollBox {

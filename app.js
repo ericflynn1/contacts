@@ -17,6 +17,11 @@ function groupAppender(object, i) {
     groupSection.classList.add("groups");
     groupSection.setAttribute("id", "list" + i);
     groupSection.innerHTML = '<h2>' + object.name + '</h2> <ol></ol>';
+    // groupSection.droppable({
+    //     drop: function(event, ui) {
+    //         console.log("Ees et verking?");
+    //     }
+    // });
     $('#groupHangout').append(groupSection);
 }
 
@@ -37,4 +42,10 @@ window.addEventListener('load', function() {
         response.forEach(groupAppender);
     });
     groupRequest.send();
+
+    $("#list0").droppable({
+        drop: function(event, ui) {
+            console.log("It's working");
+        }
+    });
 });

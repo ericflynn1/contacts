@@ -1,5 +1,6 @@
 let _ = require('lodash');
 
+
 function peopleAppender(object) {
     let peopleSection = document.createElement("section");
     peopleSection.classList.add("peopleSection");
@@ -27,6 +28,18 @@ function groupAppender(object, i) {
         }
     });
 }
+function searching (name, array) {
+
+    for (let i = 0; i < people.length; i++) {
+
+        if (people[i].name === name)
+            return people[i]; 
+
+    } 
+
+    return null;
+}
+
 
 window.addEventListener('load', function() {
     let peopleRequest = new XMLHttpRequest();

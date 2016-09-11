@@ -33,19 +33,19 @@ function groupAppender(object, i) {
     });
 }
 
-function updateGroup (user, group) {
-    let updateRequest = new XMLHttpRequest();
-    updateRequest.open('PUT', 'https://boiling-plateau-18106.herokuapp.com/group/' + group);
-    updateRequest.send(JSON.stringify(
-        {
-            id: user,
-            firstName: "",
-            lastName: "",
-            userName: "",
-            groups: group
-        }
-        ));
-}
+// function updateGroup (user, group) {
+//     let updateRequest = new XMLHttpRequest();
+//     updateRequest.open('PUT', 'https://boiling-plateau-18106.herokuapp.com/group/' + group);
+//     updateRequest.send(JSON.stringify(
+//         {
+//             id: user,
+//             firstName: "",
+//             lastName: "",
+//             userName: "",
+//             groups: group
+//         }
+//         ));
+// }
 
 // function searching (name, array) {
 

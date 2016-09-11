@@ -21,24 +21,43 @@ function groupAppender(object, i) {
     $('#groupHangout').append(groupSection);
     $( '.groups' ).droppable({
         drop: function(event, ui) {
-            let content = ui.draggable.text();
+            let content = ui.draggable.text().split(':');
             console.log(content);
-            let zeeNumber = content.split(' ')[0];
+            $ ( this )
+                .find("ol")
+                .append('<li>' + content[1] + "</li>");
+            let zeeNumber = content[0];
             console.log(zeeNumber);
+            // updateGroup(zeeNumber, )
         }
     });
 }
-function searching (name, array) {
 
-    for (let i = 0; i < people.length; i++) {
-
-        if (people[i].name === name)
-            return people[i]; 
-
-    } 
-
-    return null;
+function updateGroup (user, group) {
+    let updateRequest = new XMLHttpRequest();
+    updateRequest.open('PUT', 'https://boiling-plateau-18106.herokuapp.com/group/' + group);
+    updateRequest.send(JSON.stringify(
+        {
+            id: user,
+            firstName: "",
+            lastName: "",
+            userName: "",
+            groups: group
+        }
+        ));
 }
+
+// function searching (name, array) {
+
+//     for (let i = 0; i < people.length; i++) {
+
+//         if (people[i].name === name)
+//             return people[i]; 
+
+//     } 
+
+//     return null;
+// }
 
 
 window.addEventListener('load', function() {
@@ -47,6 +66,7 @@ window.addEventListener('load', function() {
     peopleRequest.addEventListener('load', function() {
         let response = JSON.parse(peopleRequest.responseText);
         response.forEach(peopleAppender);
+        peoples = response;
     });
     peopleRequest.send();
 
@@ -58,6 +78,4 @@ window.addEventListener('load', function() {
         response.forEach(groupAppender);
     });
     groupRequest.send();
-
-
 });

@@ -69,7 +69,7 @@ let olli = people.filter(function(user) {
   return user.name === 'olli';
 });
 
-console.log(malesUnder30);
+
 
 window.addEventListener('load', function() {
     let peopleRequest = new XMLHttpRequest();

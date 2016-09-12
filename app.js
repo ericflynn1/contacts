@@ -49,16 +49,27 @@ function groupAppender(object, i) {
 
 // function searching (name, array) {
 
-//     for (let i = 0; i < people.length; i++) {
+//     for (let i = 0; i < peopleSection.length; i++) {
 
-//         if (people[i].name === name)
-//             return people[i]; 
-
+//         if (peopleSection[i].name === name)
+//             return peopleSection[i]; 
 //     } 
 
 //     return null;
 // }
 
+let males = database.filter(function(user) { 
+  return people.name === 'M'; 
+});
+
+console.log('working');
+
+
+let olli = people.filter(function(user) {
+  return user.name === olli;
+});
+
+console.log(malesUnder30);
 
 window.addEventListener('load', function() {
     let peopleRequest = new XMLHttpRequest();

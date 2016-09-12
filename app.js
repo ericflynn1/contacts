@@ -58,7 +58,7 @@ function groupAppender(object, i) {
 //     return null;
 // }
 
-let males = database.filter(function(user) { 
+let person = people.filter(function(user) { 
   return people.name === 'M'; 
 });
 
@@ -66,7 +66,7 @@ console.log('working');
 
 
 let olli = people.filter(function(user) {
-  return user.name === olli;
+  return user.name === 'olli';
 });
 
 console.log(malesUnder30);

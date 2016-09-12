@@ -58,18 +58,18 @@ function groupAppender(object, i) {
 //     return null;
 // }
 
-let person = people.filter(function(user) { 
-  return people.name === 'M'; 
-});
+// let person = people.filter(function(user) { 
+//   return people.name === 'M'; 
+// });
 
-console.log('working');
+// console.log('working');
 
 
-let olli = people.filter(function(user) {
-  return user.name === 'olli';
-});
+// let olli = people.filter(function(user) {
+//   return user.name === 'olli';
+// });
 
-console.log(malesUnder30);
+// console.log(malesUnder30);
 
 window.addEventListener('load', function() {
     let peopleRequest = new XMLHttpRequest();
@@ -89,4 +89,20 @@ window.addEventListener('load', function() {
         response.forEach(groupAppender);
     });
     groupRequest.send();
+
+    $('#searchBtn').on('click', function () {
+        let input = $('input').val();
+        let cullingQuery = new XMLHttpRequest();
+        cullingQuery.open('GET', 'https://boiling-plateau-18106.herokuapp.com/people/?search=' + input);
+        cullingQuery.addEventListener('load', function() {
+            let response = JSON.parse(cullingQuery.responseText);
+
+            $('#scrollBox').empty();
+            response.forEach(peopleAppender);
+        });
+        cullingQuery.send();
+    });
+
 });
+
+

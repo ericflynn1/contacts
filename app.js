@@ -1,11 +1,17 @@
 let _ = require('lodash');
 
-
 function peopleAppender(object) {
     let peopleSection = document.createElement("section");
     peopleSection.classList.add("peopleSection");
-    peopleSection.innerHTML = '<p>' + object.id + " : " + object.firstName + ' ' + object.lastName + '</p>';
+    // object.groups doesn't seem to properly add the groups to the person
+    peopleSection.innerHTML = '<p>' + object.id + " : " + object.firstName + ' ' + object.lastName + " " + '<ul></ul>' + '</p>';
     $('#scrollBox').append(peopleSection);
+    for (let i = 0; i < object.groups.length; i++) {
+        let groupElement = document.createElement('li');
+        groupElement.textContent = object.groups[i].name;
+        peopleSection.querySelector('ul').appendChild(groupElement);
+    }
+
     $('.peopleSection').draggable({
         revert: true,
         containment: $('#scrollbox'),
@@ -19,33 +25,33 @@ function groupAppender(object, i) {
     groupSection.setAttribute("id", "list" + i);
     groupSection.innerHTML = '<h2>' + object.name + '</h2> <ol></ol>';
     $('#groupHangout').append(groupSection);
-    $( '.groups' ).droppable({
+    $( '#list' + i ).droppable({
         drop: function(event, ui) {
             let content = ui.draggable.text().split(':');
             console.log(content);
             $ ( this )
                 .find("ol")
                 .append('<li>' + content[1] + "</li>");
-            let zeeNumber = content[0];
+            let zeeNumber = parseInt(content[0].trim());
             console.log(zeeNumber);
-            // updateGroup(zeeNumber, )
+            updateGroup(zeeNumber, object.id);
         }
     });
 }
 
-// function updateGroup (user, group) {
-//     let updateRequest = new XMLHttpRequest();
-//     updateRequest.open('PUT', 'https://boiling-plateau-18106.herokuapp.com/group/' + group);
-//     updateRequest.send(JSON.stringify(
-//         {
-//             id: user,
-//             firstName: "",
-//             lastName: "",
-//             userName: "",
-//             groups: group
-//         }
-//         ));
-// }
+
+
+function updateGroup (user, group) {
+    let updateRequest = new XMLHttpRequest();
+    updateRequest.open('PUT', 'https://boiling-plateau-18106.herokuapp.com/group/' + group);
+    updateRequest.setRequestHeader('Content-type', 'application/json');
+
+    updateRequest.send(JSON.stringify(
+        {
+            id: user,
+        }
+        ));
+}
 
 // function searching (name, array) {
 
@@ -76,6 +82,7 @@ window.addEventListener('load', function() {
         let response = JSON.parse(peopleRequest.responseText);
         response.forEach(peopleAppender);
         peoples = response;
+        console.log(response);
     });
     peopleRequest.send();
 
@@ -83,7 +90,6 @@ window.addEventListener('load', function() {
     groupRequest.open('GET', 'https://boiling-plateau-18106.herokuapp.com/group');
     groupRequest.addEventListener('load', function() {
         let response = JSON.parse(groupRequest.responseText);
-        // console.log(response[0].name);
         response.forEach(groupAppender);
     });
     groupRequest.send();

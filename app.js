@@ -69,8 +69,6 @@ function groupAppender(object, i) {
 //   return user.name === 'olli';
 // });
 
-// console.log(malesUnder30);
-
 window.addEventListener('load', function() {
     let peopleRequest = new XMLHttpRequest();
     peopleRequest.open('GET', 'https://boiling-plateau-18106.herokuapp.com/people');

@@ -39,8 +39,6 @@ function groupAppender(object, i) {
     });
 }
 
-
-
 function updateGroup (user, group) {
     let updateRequest = new XMLHttpRequest();
     updateRequest.open('PUT', 'https://boiling-plateau-18106.herokuapp.com/group/' + group);
@@ -82,7 +80,7 @@ window.addEventListener('load', function() {
         let response = JSON.parse(peopleRequest.responseText);
         response.forEach(peopleAppender);
         peoples = response;
-        console.log(response);
+        // console.log(response);
     });
     peopleRequest.send();
 
@@ -100,13 +98,9 @@ window.addEventListener('load', function() {
         cullingQuery.open('GET', 'https://boiling-plateau-18106.herokuapp.com/people/?search=' + input);
         cullingQuery.addEventListener('load', function() {
             let response = JSON.parse(cullingQuery.responseText);
-
             $('#scrollBox').empty();
             response.forEach(peopleAppender);
         });
         cullingQuery.send();
     });
-
 });
-
-
